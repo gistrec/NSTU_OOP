@@ -203,6 +203,13 @@ void main() {
 	system("pause");
 	system("cls");
 
+	// Тест 6: Сохранение/загрузка из файла
+	Circle* figure = new Circle(150, 150, 100);
+	saveCircle(std::string("file.txt"), figure);
+	delete figure; // Удаляем фигуру
+	figure = loadCircle(std::string("file.txt"));
+	drawPaintedCircle(hdc, &rt, figure);
+
 	//
 	/////////////////////////////////////////////////////////////
 	// Вот тут конец области, куда нужно вставлять рабочий код //
