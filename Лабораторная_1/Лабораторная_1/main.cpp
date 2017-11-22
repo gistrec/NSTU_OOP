@@ -3,8 +3,10 @@
 // функционал, предоставляемый операционной системой Windows
 #include <windows.h>
 #include <windowsx.h>
-// Библиотека для ввода-вывода - Input/Output Stream 
-#include <iostream>
+// Библиотека для ввода-вывода
+#include <fstream>
+// Библиотека нужна для создания строковых переменных
+#include <string>
 
 
 // Структура круга
@@ -56,7 +58,7 @@ boolean isCorrect(const RECT* rt, const Circle* circle) {
 // 
 // Входные данные: HDC - дескриптор, т.е. целое число, идентификатор контекста отображения
 // Константные указатели на стркутуры RECT и Circle
-void drowUnpaintedCircle(HDC hdc, const RECT* rt, const Circle* circle) {
+void drawUnpaintedCircle(HDC hdc, const RECT* rt, const Circle* circle) {
 	// Если данные у круга неккоректны - выходим из функции
 	if (!isCorrect(rt, circle)) return;
 	// Создаем перо и кисть
@@ -74,7 +76,7 @@ void drowUnpaintedCircle(HDC hdc, const RECT* rt, const Circle* circle) {
 
 // Рисование закрашенного круга
 // Функция аналогична предыдущей, за исключением цвета кисти
-void drowPaintedCircle(HDC hdc, const RECT* rt, const Circle* circle) {
+void drawPaintedCircle(HDC hdc, const RECT* rt, const Circle* circle) {
 	// Если данные у круга неккоректны - выходим из функции
 	if (!isCorrect(rt, circle)) return;
 	// Создаем перо и кисть
@@ -112,13 +114,44 @@ boolean isInclude(const Circle* big, const Circle* little) {
 //		2. Проверяем принадлежит ли круг little кругу big
 //		3. Рисуем закрашенный круг big
 //		4. Рисуем незакрашенный круг little
-void drowTwoCircle(HDC hdc, const RECT* rt, const Circle* big, const Circle* little) {
+void drawTwoCircle(HDC hdc, const RECT* rt, const Circle* big, const Circle* little) {
 	if (!isCorrect(rt, big)) return;
 	if (!isCorrect(rt, little)) return;
 
 	if (!isInclude(big, little)) return;
-	drowPaintedCircle(hdc, rt, big);
-	drowUnpaintedCircle(hdc, rt, little);
+	drawPaintedCircle(hdc, rt, big);
+	drawUnpaintedCircle(hdc, rt, little);
+}
+
+// Создание круга по данным из файла filename
+// Выходные данные - название файла
+//
+// Выходные данные - указатель на круг или null, если файл не найден
+Circle* loadCircle(const std::string &fileName) {
+	// Чтение файла
+	std::ifstream input(fileName);
+	// Если файл не открыт (не найден) - возвразаем NULL
+	if (!input.is_open()) return NULL;
+	// Создаем круг
+	Circle* circle = new Circle(0, 0, 0);
+	// Чтение девяти переменных в круг
+	input >> circle->centerX >> circle->centerY >> circle->radius;
+	input >> circle->r >> circle->g >> circle->b;
+	input >> circle->rFill >> circle->gFill >> circle->bFill;
+	
+	return circle;
+}
+
+
+// Сохранение круга в файл filename
+// Выходные данные - название файла и константный указатель на круг
+void saveCircle(const std::string &fileName, const Circle* circle) {
+	std::ofstream output(fileName); // Создаем файл
+	// Сохраняем все данные
+	// На первой строке - центр и радиус, на второй - цвет окружности, на третьей - цвет заливки
+	output << circle->centerX << " " << circle->centerY << " " << circle->radius << "\n";
+	output << circle->r << " " << circle->g << " " << circle->b << "\n";
+	output << circle->rFill << " " << circle->gFill << " " << circle->bFill;
 }
 
 
@@ -136,7 +169,10 @@ void main() {
 
 	// Вот тут начало области, куда нужно вставлять рабочий код 
 	Circle* figure1 = new Circle(200, 200, 100); // Созадем круг
-	drowPaintedCircle(hdc, &rt, figure1); // Рисуем круг
+	//saveCircle(std::string("output.txt"), figure1);
+	Circle* figure2 = loadCircle(std::string("output.txt"));
+	drawPaintedCircle(hdc, &rt, figure2);
+	//drawPaintedCircle(hdc, &rt, figure1); // Рисуем круг
 	// Вот тут конец области, куда нужно вставлять рабочий код
 
 	
