@@ -38,7 +38,7 @@ struct Circle {
 boolean isCorrect(const RECT* rt, const Circle* circle) {
 	// Проверка на 'нулевой радиус'
 	if (circle->radius <= 0) {
-		printf_s("Ошибка, у круга отрицательный радиус");
+		printf_s("Ошибка, у круга отрицательный радиус\n");
 		return false;
 	}
 	// Проверка на принадлежность окну
@@ -46,7 +46,7 @@ boolean isCorrect(const RECT* rt, const Circle* circle) {
 	if ((circle->centerX - circle->radius) < 0 || (circle->centerY - circle->radius) < 0 ||
 		// Если низ или право 'вылазят' за контекст отображения
 		(circle->centerX + circle->radius > rt->right) || (circle->centerY + circle->radius) > rt->bottom) {
-		printf_s("Ошибка, круг вылазит за контект отображения");
+		printf_s("Ошибка, круг вылазит за контект отображения\n");
 		return false;
 	}
 	// Если все проверки пройдены - возвращаем true
@@ -167,13 +167,45 @@ void main() {
 	GetClientRect(hwnd, &rt);
 
 
-	// Вот тут начало области, куда нужно вставлять рабочий код 
-	Circle* figure1 = new Circle(200, 200, 100); // Созадем круг
-	//saveCircle(std::string("output.txt"), figure1);
-	Circle* figure2 = loadCircle(std::string("output.txt"));
-	drawPaintedCircle(hdc, &rt, figure2);
-	//drawPaintedCircle(hdc, &rt, figure1); // Рисуем круг
-	// Вот тут конец области, куда нужно вставлять рабочий код
+	// Вот тут начало области, куда нужно вставлять рабочий код //
+	//////////////////////////////////////////////////////////////
+	//
+
+	// Создаем 2 круга для тестов
+	Circle* big = new Circle(200, 200, 100);
+	Circle* little = new Circle(225, 225, 50);
+
+	// Тест 1: Рисование закрашенного круга
+	drawPaintedCircle(hdc, &rt, big);
+	system("pause"); // Ожидание нажатия любой кнопки
+	system("cls"); // Отчистить экран
+
+	// Тест 2: Рисование незакрашенного круга
+	drawUnpaintedCircle(hdc, &rt, big);
+	system("pause");
+	system("cls");
+
+	// Тест 3: Рисование круга в круге
+	if (isInclude(big, little))
+		drawTwoCircle(hdc, &rt, big, little);
+	system("pause");
+	system("cls");
+
+	// Тест 4: Ошибка из-за нулевого радиуса
+	big->radius = 0;
+	drawPaintedCircle(hdc, &rt, big);
+	system("pause");
+	system("cls");
+
+	// Тест 5: Ошибка из-за выход за границы контекста отображения
+	little->centerX = -100;
+	drawPaintedCircle(hdc, &rt, little);
+	system("pause");
+	system("cls");
+
+	//
+	/////////////////////////////////////////////////////////////
+	// Вот тут конец области, куда нужно вставлять рабочий код //
 
 	
 	system("pause"); // Пауза программы
