@@ -31,7 +31,7 @@ void main() {
 		for (auto iter = container->begin(); iter != container->end(); ++iter) {
 			std::cout << (*iter).getRadius() << ", ";
 		}
-
+		//
 		//std::sort(list->begin(), list->end(), [](MyCircle a, MyCircle b) { return a.getRadius() < b.getRadius(); });
 
 		//for (auto iter = list->begin(); iter != list->end(); ++iter) {
