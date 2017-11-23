@@ -1,6 +1,7 @@
 #include "Circle.h"
 #include <iostream>
 
+
 // ѕроверка на принадлежность круга little кругу big
 //  ак пон€тно из названи€ - big должен включать little
 //
@@ -28,6 +29,7 @@ void main() {
 	// получаем размер окна
 	GetClientRect(hwnd, &rt);
 
+
 	// ¬от тут начало области, куда нужно вставл€ть рабочий код //
 	//////////////////////////////////////////////////////////////
 	//
@@ -36,9 +38,9 @@ void main() {
 		figure1->init(130, 200, 100);
 
 		Circle* figure2 = new Circle();
-		figure2->init(-150, 230, 25);
+		figure2->init(150, 230, 25);
 
-		//isInclude(figure1, figure2);
+		std::cout << "ѕринадлежит: " << (int) isInclude(figure1, figure2) << std::endl;
 		figure1->drawPaintedCircle(hdc, &rt);
 		figure2->drawUnpaintedCircle(hdc, &rt);
 	} catch (std::string &error) {
@@ -47,6 +49,7 @@ void main() {
 	//
 	/////////////////////////////////////////////////////////////
 	// ¬от тут конец области, куда нужно вставл€ть рабочий код //
+
 
 	system("pause");
 	// освобождаем контекст отображени€

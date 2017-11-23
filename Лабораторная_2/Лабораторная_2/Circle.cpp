@@ -7,7 +7,6 @@ void Circle::init(int centerX, int centerY, int radius) {
 	this->radius = radius;
 }
 
-
 void Circle::load(const std::string &fileName) {
 	// Чтение файла
 	std::ifstream input(fileName);
@@ -19,7 +18,6 @@ void Circle::load(const std::string &fileName) {
 	input >> r >> g >> b;
 	input >> rFill >> gFill >> bFill;
 }
-
 
 void Circle::save(const std::string &fileName) const {
 	std::ofstream output(fileName); // Создаем файл
@@ -43,10 +41,6 @@ boolean Circle::isCorrect(const RECT* rt) const {
 	// Если все проверки пройдены - возвращаем true
 	return true;
 }
-
-
-
-
 
 void Circle::drawUnpaintedCircle(HDC hdc, const RECT* rt) const {
 	// Если данные у круга неккоректны - выходим из функции
@@ -74,6 +68,7 @@ void Circle::drawPaintedCircle(HDC hdc, const RECT* rt) const {
 	DeleteBrush(brush);
 }
 
+
 //
 // Дальше идет геттеры - с помощью них можно получить значение переменных в классе круга
 //
@@ -85,9 +80,10 @@ int Circle::getCenterY() const {
 	return centerY;
 }
 
-int Circle::getRadius() const	{
+int Circle::getRadius() const {
 	return radius;
 }
+
 
 //
 // Дальше идут сеттеры - с помощью них устанавливаем значения в классе круга
