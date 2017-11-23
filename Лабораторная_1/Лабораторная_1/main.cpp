@@ -1,4 +1,3 @@
-
 // Бибилиотеки windows.h и windowsx.h позволяют  использовать в своей программе
 // функционал, предоставляемый операционной системой Windows
 #include <windows.h>
@@ -197,7 +196,7 @@ void main() {
 	system("pause");
 	system("cls");
 
-	// Тест 5: Ошибка из-за выход за границы контекста отображения
+	// Тест 5: Ошибка из-за выхода за границы контекста отображения
 	little->centerX = -100;
 	drawPaintedCircle(hdc, &rt, little);
 	system("pause");
