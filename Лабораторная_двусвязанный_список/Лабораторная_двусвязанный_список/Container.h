@@ -6,11 +6,12 @@
 
 // Класс реализует понятие таблицы для хранения классов
 // Позволяет добавлять, удалять и искать классы по их id
+//	
 class Container {
 
 private:
 	// Структура элемента списка
-	static struct Element {
+	struct Element {
 		int id;
 		std::shared_ptr<MyCircle> figure;
 		std::shared_ptr<Element> previous;
@@ -43,17 +44,14 @@ public:
 	void addFigure(std::shared_ptr<MyCircle> figure, int id);
 
 	// Получаем указатель на класс фигуры
-	// Если фигуры с таким id нет - возвращает NULL
-	std::shared_ptr<MyCircle> getFigure(int id) const;
-
-	// Проверяем находится ли фигура c заданным id в контейнере
-	bool isInContainer(int id) const;
+	// Если фигуры с таким id нет - создается исключение
+	std::shared_ptr<MyCircle> getFigure(int id, int index = 0) const;
 
 	// Удалить фигуру с заданным id
-	void deleteFigure(int id);
+	void deleteFigure(int id, int index = 0);
 
-	// Выводим id всех фигур
-	void printAllId() const;
+	// Получить кол-во фигур с заданным id
+	int getCountFigure(int id);
 
 	// Загрузка набора фигур в контейнер
 	void load(const std::string &fileName);

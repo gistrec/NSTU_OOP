@@ -1,33 +1,24 @@
 #include "Tree.h"
 #include <iostream>
 
-void print_Tree(Node * p, int level) {
+void print_Tree(node* p, int level) {
 	if (p) {
-		print_Tree(p->left, level + 1);
+		print_Tree(p->ll, level + 1);
 		for (int i = 0; i< level; i++) std::cout << "   ";
-		std::cout << p->data << std::endl;
-		print_Tree(p->right, level + 1);
+		std::cout << p->Value << std::endl;
+		print_Tree(p->rr, level + 1);
 	}
 }
 
 void main() {
-	std::cout << "Test" << std::endl;
-	int a, maxnum, ct;
-	Node *t;
-
-	maxnum = 10;
-
-	for (ct = maxnum; ct; ct--) {
-		a = rand() % 9 + 1;
-		if ((t = findNode(a)) != NULL) {
-			deleteNode(t);
-		} else {
-			insertNode(a);
-		}
-	}
-
-	print_Tree(root, 0);
-
-
-	system("pause");
+	init();
+	//int x;
+	//while (cin >> x) {
+	//	Root = insert(Root, x, 1);
+	//	cout << Root << endl;
+	//}
+	insert(Root, 2, 1);
+	insert(Root, 3, 2);
+	insert(Root, 4, 3);
+	print_Tree(Root, 0);
 }

@@ -31,22 +31,7 @@ std::shared_ptr<Container::Element> Container::getLastElement() const {
 }
 
 
-std::shared_ptr<MyCircle> Container::getFigure(int id) const {
-	std::shared_ptr<Element> currentElement = getFirstElement();
-	while (currentElement != nullptr) {
-		if (currentElement->id == id) return currentElement->figure;
-		currentElement = currentElement->next;
-	}
-	if (currentElement == nullptr) return NULL;
-	else return currentElement->figure;
-}
 
-bool Container::isInContainer(int id) const {
-	if (getFigure(id) == nullptr) return false;
-	else return true;
-}
-
-// Добавляем новый элемент в начало списка
 void Container::addFigure(std::shared_ptr<MyCircle> figure, int id) {
 	//Element* newElement = new Element();
 	std::shared_ptr<Element> newElement = std::make_shared<Element>();
@@ -60,25 +45,45 @@ void Container::addFigure(std::shared_ptr<MyCircle> figure, int id) {
 	start = newElement;
 }
 
-void Container::deleteFigure(int id) {
+std::shared_ptr<MyCircle> Container::getFigure(int id, int index) const {
 	std::shared_ptr<Element> currentElement = getFirstElement();
-	while (currentElement != nullptr && currentElement->id != id) {
+	while (currentElement != nullptr) {
+		if (currentElement->id == id && (index == 0)) return currentElement->figure;
+		index--;
 		currentElement = currentElement->next;
 	}
-	if (currentElement == nullptr) return;
+	// Если фигура не найдена - генерируем исключение
+	throw std::string("Не найдена фигура с заданным индексом");
+}
+
+void Container::deleteFigure(int id, int index = 0) {
+	std::shared_ptr<Element> currentElement = getFirstElement();
+	while (currentElement != nullptr && currentElement->id != id) {
+		if (currentElement = currentElement->next) {
+			if (index == 0) break;
+			index--;
+		}
+	}
+	if (index != 0) throw std::string("Не найдена фигура с заданным индексом");
 	*(currentElement->previous->next) = *(currentElement->next);
 	*(currentElement->next->previous) = *(currentElement->previous);
 }
 
-void Container::printAllId() const {
+int Container::getCountFigure(int id) {
+	std::shared_ptr<Element> currentElement = getFirstElement();
+	int count = 0;
+	while (currentElement != nullptr) {
+		if (currentElement->id == id) count++;
+	}
+}
+
+/*void Container::printAllId() const {
 	std::shared_ptr<Element> currentElement = getFirstElement();
 	while (currentElement != nullptr) {
 		std::cout << currentElement->id << " ";
 		currentElement = currentElement->next;
 	}
-}
-
-
+}*/
 
 void Container::load(const std::string &fileName) {
 	// Данные для фигуры
@@ -86,7 +91,7 @@ void Container::load(const std::string &fileName) {
 	int centerX, centerY, radius;
 
 	std::ifstream input(fileName);
-	if (!input.is_open()) throw 3;
+	if (!input.is_open()) throw std::string("Файл не найден");
 	while (input >> centerX >> centerY >> radius) {
 		// std::cout << centerX << " " << centerY << " " << radius << "\n";
 		std::shared_ptr<MyCircle> newFigure = std::make_shared<MyCircle>(centerX, centerY, radius);

@@ -15,7 +15,6 @@ void main() {
 	RECT rt;
 	GetClientRect(hwnd, &rt); // Получаем размер окна
 
-
 	try {
 		std::shared_ptr<Container> container = std::make_shared<Container>();
 
@@ -26,7 +25,7 @@ void main() {
 		container->addFigure(figure2, 1);
 
 		//list->getElementById(0)->figure->drowPainted(hdc, &rt);
-		//list->getElementById(1)->figure->drowUnpainted(hdc, &rt);*/
+		//list->getElementById(1)->figure->drowUnpainted(hdc, &rt);
 
 		for (auto iter = container->begin(); iter != container->end(); ++iter) {
 			std::cout << (*iter).getRadius() << ", ";
