@@ -1,4 +1,4 @@
-#pragma once
+п»ї#pragma once
 #include "MyCircle.h"
 
 MyCircle::MyCircle(int centerX, int centerY, int radius) {
@@ -9,7 +9,7 @@ MyCircle::MyCircle(int centerX, int centerY, int radius) {
 
 void MyCircle::load(const std::string &fileName) {
 	std::ifstream input(fileName);
-	if (!input.is_open()) throw std::string("Файл не найден");
+	if (!input.is_open()) throw std::string("Р¤Р°Р№Р» РЅРµ РЅР°Р№РґРµРЅ");
 	input >> centerX >> centerY >> radius;
 	input >> r >> g >> b;
 	input >> rFill >> gFill >> bFill;
@@ -17,30 +17,30 @@ void MyCircle::load(const std::string &fileName) {
 
 void MyCircle::save(const std::string &fileName) const {
 	std::ofstream output(fileName);
-	// Сохраняем в три строки
+	// РЎРѕС…СЂР°РЅСЏРµРј РІ С‚СЂРё СЃС‚СЂРѕРєРё
 	output << getCenterX() << " " << getCenterY() << " " << getRadius() << "\n";
 	output << r << " " << b << " " << b << "\n";
 	output << rFill << " " << gFill << " " << bFill;
 }
 
 void MyCircle::drowUnpainted(HDC hdc, const RECT* rt) const {
-	if (!isValid(rt)) throw std::string("Фигура лежит вне границ экрана");
+	if (!isValid(rt)) throw std::string("Р¤РёРіСѓСЂР° Р»РµР¶РёС‚ РІРЅРµ РіСЂР°РЅРёС† СЌРєСЂР°РЅР°");
 	HPEN pen = SelectPen(hdc, CreatePen(PS_SOLID, 1, RGB(r, g, b)));
-	HBRUSH brush = SelectBrush(hdc, CreateSolidBrush(RGB(0, 0, 0))); // Фон
+	HBRUSH brush = SelectBrush(hdc, CreateSolidBrush(RGB(0, 0, 0))); // Р¤РѕРЅ
 	Ellipse(hdc, centerX - radius, centerY - radius, centerX + radius, centerY + radius);
 	DeletePen(pen);
 	DeleteBrush(brush);
 }
 
 void MyCircle::drowPainted(HDC hdc, const RECT* rt) const {
-	if (!isValid(rt)) throw std::string("Фигура лежит вне границ экрана");
-	// Создаем перо и говорим, что будем рисовать этим пером
+	if (!isValid(rt)) throw std::string("Р¤РёРіСѓСЂР° Р»РµР¶РёС‚ РІРЅРµ РіСЂР°РЅРёС† СЌРєСЂР°РЅР°");
+	// РЎРѕР·РґР°РµРј РїРµСЂРѕ Рё РіРѕРІРѕСЂРёРј, С‡С‚Рѕ Р±СѓРґРµРј СЂРёСЃРѕРІР°С‚СЊ СЌС‚РёРј РїРµСЂРѕРј
 	HPEN pen = SelectPen(hdc, CreatePen(PS_SOLID, 1, RGB(r, g, b)));
-	HBRUSH brush = SelectBrush(hdc, CreateSolidBrush(RGB(rFill, gFill, bFill))); // Фон
+	HBRUSH brush = SelectBrush(hdc, CreateSolidBrush(RGB(rFill, gFill, bFill))); // Р¤РѕРЅ
 	Ellipse(hdc, centerX - radius, centerY - radius, centerX + radius, centerY + radius);
-	// удаляем красное перо
+	// СѓРґР°Р»СЏРµРј РєСЂР°СЃРЅРѕРµ РїРµСЂРѕ
 	DeletePen(pen);
-	// удаляем зеленую кисть
+	// СѓРґР°Р»СЏРµРј Р·РµР»РµРЅСѓСЋ РєРёСЃС‚СЊ
 	DeleteBrush(brush);
 }
 
@@ -76,6 +76,6 @@ int MyCircle::getRadius() const {
 }
 
 void MyCircle::setRadius(int radius) {
-	if (radius < 0) throw std::string("Радиус должен быть больше нуля");
+	if (radius < 0) throw std::string("Р Р°РґРёСѓСЃ РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ Р±РѕР»СЊС€Рµ РЅСѓР»СЏ");
 	this->radius = radius;
 }

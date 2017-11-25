@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include "Container.h"
 
 Container::Container() {
@@ -52,8 +52,8 @@ std::shared_ptr<MyCircle> Container::getFigure(int id, int index) const {
 		index--;
 		currentElement = currentElement->next;
 	}
-	// Åñëè ôèãóðà íå íàéäåíà - ãåíåðèðóåì èñêëþ÷åíèå
-	throw std::string("Íå íàéäåíà ôèãóðà ñ çàäàííûì èíäåêñîì");
+	// Ð•ÑÐ»Ð¸ Ñ„Ð¸Ð³ÑƒÑ€Ð° Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½Ð° - Ð³ÐµÐ½ÐµÑ€Ð¸Ñ€ÑƒÐµÐ¼ Ð¸ÑÐºÐ»ÑŽÑ‡ÐµÐ½Ð¸Ðµ
+	throw std::string("ÐÐµ Ð½Ð°Ð¹Ð´ÐµÐ½Ð° Ñ„Ð¸Ð³ÑƒÑ€Ð° Ñ Ð·Ð°Ð´Ð°Ð½Ð½Ñ‹Ð¼ Ð¸Ð½Ð´ÐµÐºÑÐ¾Ð¼");
 }
 
 void Container::deleteFigure(int id, int index = 0) {
@@ -64,7 +64,7 @@ void Container::deleteFigure(int id, int index = 0) {
 			index--;
 		}
 	}
-	if (index != 0) throw std::string("Íå íàéäåíà ôèãóðà ñ çàäàííûì èíäåêñîì");
+	if (index != 0) throw std::string("ÐÐµ Ð½Ð°Ð¹Ð´ÐµÐ½Ð° Ñ„Ð¸Ð³ÑƒÑ€Ð° Ñ Ð·Ð°Ð´Ð°Ð½Ð½Ñ‹Ð¼ Ð¸Ð½Ð´ÐµÐºÑÐ¾Ð¼");
 	*(currentElement->previous->next) = *(currentElement->next);
 	*(currentElement->next->previous) = *(currentElement->previous);
 }
@@ -86,12 +86,12 @@ int Container::getCountFigure(int id) {
 }*/
 
 void Container::load(const std::string &fileName) {
-	// Äàííûå äëÿ ôèãóðû
+	// Ð”Ð°Ð½Ð½Ñ‹Ðµ Ð´Ð»Ñ Ñ„Ð¸Ð³ÑƒÑ€Ñ‹
 	int id = 0;
 	int centerX, centerY, radius;
 
 	std::ifstream input(fileName);
-	if (!input.is_open()) throw std::string("Ôàéë íå íàéäåí");
+	if (!input.is_open()) throw std::string("Ð¤Ð°Ð¹Ð» Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½");
 	while (input >> centerX >> centerY >> radius) {
 		// std::cout << centerX << " " << centerY << " " << radius << "\n";
 		std::shared_ptr<MyCircle> newFigure = std::make_shared<MyCircle>(centerX, centerY, radius);
