@@ -1,4 +1,4 @@
-#pragma once
+п»ї#pragma once
 
 #include <algorithm>
 #include <iostream>
@@ -8,12 +8,12 @@
 #define _CRT_SECURE_NO_WARNINGS = false;
 
 
-void main() { 
+void main() {
 	setlocale(LC_ALL, "Russian");
-	HWND hwnd = GetConsoleWindow(); // Получаем идентификатор окна
-	HDC hdc = GetDC(hwnd);  // Получаем контекст отображения
+	HWND hwnd = GetConsoleWindow(); // РџРѕР»СѓС‡Р°РµРј РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ РѕРєРЅР°
+	HDC hdc = GetDC(hwnd);  // РџРѕР»СѓС‡Р°РµРј РєРѕРЅС‚РµРєСЃС‚ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ
 	RECT rt;
-	GetClientRect(hwnd, &rt); // Получаем размер окна
+	GetClientRect(hwnd, &rt); // РџРѕР»СѓС‡Р°РµРј СЂР°Р·РјРµСЂ РѕРєРЅР°
 
 	try {
 		std::shared_ptr<Container> container = std::make_shared<Container>();
@@ -43,5 +43,5 @@ void main() {
 
 	std::cout << "\n";
 	system("pause");
-	ReleaseDC(hwnd, hdc); // освобождаем контекст отображения
+	ReleaseDC(hwnd, hdc); // РѕСЃРІРѕР±РѕР¶РґР°РµРј РєРѕРЅС‚РµРєСЃС‚ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ
 }
