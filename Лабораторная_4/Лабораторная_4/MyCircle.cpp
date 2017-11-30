@@ -1,5 +1,4 @@
-﻿#pragma once
-#include "MyCircle.h"
+﻿#include "MyCircle.h"
 
 MyCircle::MyCircle(int centerX, int centerY, int radius) {
 	this->centerX = centerX;

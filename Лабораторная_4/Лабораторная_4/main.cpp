@@ -1,9 +1,7 @@
-﻿#pragma once
-
-#include <algorithm>
-#include <iostream>
-#include "MyCircle.h"
+﻿#include "MyCircle.h"
+#include "MyRectangle.h"
 #include "Container.h"
+#include <iostream>
 
 #define _CRT_SECURE_NO_WARNINGS = false;
 
@@ -23,6 +21,9 @@ void main() {
 
 		std::shared_ptr<MyCircle> figure2 = std::make_shared<MyCircle>(150, 230, 40);
 		container->addFigure(figure2, 1);
+
+		std::shared_ptr<MyRectangle> figure3 = std::make_shared<MyRectangle>(50, 50, 300, 300);
+		figure3->drowPainted(hdc, &rt);
 
 		container->getFigure(0)->drowPainted(hdc, &rt);
 		container->getFigure(1)->drowUnpainted(hdc, &rt);

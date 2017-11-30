@@ -31,11 +31,11 @@ public:
 	// Сохранение данных о фигуре в файл
 	void save(const std::string &fileName) const override;
 
-	// Рисование незакрашенной фигуры
-	void drowUnpainted(HDC hdc, const RECT* rt) const override;
-
 	// Рисование закрашенной фигуры
 	void drowPainted(HDC hdc, const RECT* rt) const override;
+
+	// Рисование незакрашенной фигуры
+	void drowUnpainted(HDC hdc, const RECT* rt) const override;
 
 	// Проверка, лежит ли фигура в пределе контекста отображения
 	bool isValid(const RECT* rt) const override;

@@ -18,10 +18,10 @@ void MyFigure::setColor(int red, int green, int blue) {
 }
 
 
-void MyFigure::setFillColor(int red, int green, int blue) {
-	this->redFill = red;
-	this->greenFill = green;
-	this->blueFill = blue;
+void MyFigure::setFillColor(int redFill, int greenFill, int blueFill) {
+	this->redFill = redFill;
+	this->greenFill = greenFill;
+	this->blueFill = blueFill;
 }
 
 
