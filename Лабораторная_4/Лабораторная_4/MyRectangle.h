@@ -1,32 +1,32 @@
-#pragma once
+п»ї#pragma once
 #include "MyFigure.h"
 
 class MyRectangle : private MyFigure {
 
 private:
-	// Две точки
+	// Р”РІРµ С‚РѕС‡РєРё
 	int x1, y1;
 	int x2, y2;
 public:
-	// Конструктор класса
+	// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєР»Р°СЃСЃР°
 	MyRectangle(int x1, int y1, int x2, int y2);
 
-	// Загрузка данных о фигуре в файл
+	// Р—Р°РіСЂСѓР·РєР° РґР°РЅРЅС‹С… Рѕ С„РёРіСѓСЂРµ РІ С„Р°Р№Р»
 	void load(const std::string &fileName) override;
 
-	// Сохранение данных о фигуре в файл
+	// РЎРѕС…СЂР°РЅРµРЅРёРµ РґР°РЅРЅС‹С… Рѕ С„РёРіСѓСЂРµ РІ С„Р°Р№Р»
 	void save(const std::string &fileName) const override;
 
-	// Рисование незакрашенной фигуры
+	// Р РёСЃРѕРІР°РЅРёРµ РЅРµР·Р°РєСЂР°С€РµРЅРЅРѕР№ С„РёРіСѓСЂС‹
 	void drowPainted(HDC hdc, const RECT* rt) const override;
 
-	// Рисование закрашенной фигуры
+	// Р РёСЃРѕРІР°РЅРёРµ Р·Р°РєСЂР°С€РµРЅРЅРѕР№ С„РёРіСѓСЂС‹
 	void drowUnpainted(HDC hdc, const RECT* rt) const override;
 
-	// Проверка, лежит ли фигура в пределе контекста отображения
+	// РџСЂРѕРІРµСЂРєР°, Р»РµР¶РёС‚ Р»Рё С„РёРіСѓСЂР° РІ РїСЂРµРґРµР»Рµ РєРѕРЅС‚РµРєСЃС‚Р° РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ
 	bool isValid(const RECT* rt) const override;
 
-	// Геттеры/сеттеры
+	// Р“РµС‚С‚РµСЂС‹/СЃРµС‚С‚РµСЂС‹
 	void setPoints(int x1, int y1, int x2, int y2);
 	void getPoints(int &x1, int &y1, int &x2, int &y2) const;
 };
