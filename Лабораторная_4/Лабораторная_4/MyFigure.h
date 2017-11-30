@@ -7,10 +7,14 @@ class MyFigure {
 
 private:
 	// У каждой фигуры есть цвет контура
-	int red, green, blue;
+	int red   = 245,
+		green = 255,
+		blue  = 51;
 
 	// У каждой фигуры есть цвет заливки
-	int redFill, greenFill, blueFill;
+	int redFill   = 255,
+		greenFill = 153,
+		blueFill  = 51;
 
 public:
 	// Каждую фигуру можно сохранить и загрузить
@@ -30,7 +34,7 @@ public:
 	virtual void setColor(int red, int green, int blue) final;
 	virtual void setFillColor(int red, int green, int blue) final;
 
-	// Получаем цвет фигуры через указатели
-	virtual void getColor(int* red, int* green, int* blue) const final;
-	virtual void getFillColor(int* red, int* green, int* blue) const final;
+	// Получаем цвет фигуры через ссылку на цвета
+	virtual void getColor(int &red, int &green, int &blue) const final;
+	virtual void getFillColor(int &red, int &green, int &blue) const final;
 };

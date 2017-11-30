@@ -27,6 +27,8 @@ void main() {
 		container->getFigure(0)->drowPainted(hdc, &rt);
 		container->getFigure(1)->drowUnpainted(hdc, &rt);
 
+		//container->getFigure(1)->save("asdasd.txt");
+
 		for (auto iter = container->begin(); iter != container->end(); ++iter) {
 			std::cout << (*iter).getRadius() << ", ";
 		}

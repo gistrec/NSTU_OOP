@@ -25,7 +25,7 @@ public:
 
 	OwnIterator& operator++() {
 		if (link == nullptr) {
-			throw std::string("Null pointer exeption");
+			throw std::string("Ошибка: Разыменовывание нулевого указателя");
 		}
 		link = link->next;
 		return *this;
@@ -34,7 +34,7 @@ public:
 
 	OwnIterator& operator--() {
 		if (link == nullptr) {
-			throw std::string("Null pointer exeption");
+			throw std::string("Ошибка: Разыменовывание нулевого указателя");
 		}
 		link = link->previous;
 		return *this;
@@ -42,7 +42,7 @@ public:
 
 	typename OwnIterator::reference operator*() const {
 		if (link == nullptr || link->figure == nullptr) {
-			throw std::string("Null pointer exeption");
+			throw std::string("Ошибка: Разыменовывание нулевого указателя");
 		}
 		return *link->figure;
 	}

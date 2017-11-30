@@ -25,15 +25,15 @@ void MyFigure::setFillColor(int red, int green, int blue) {
 }
 
 
-void MyFigure::getColor(int* red, int* green, int* blue) const {
-	*red = this->red;
-	*green = this->green;
-	*blue = this->blue;
+void MyFigure::getColor(int &red, int &green, int &blue) const {
+	red = this->red;
+	green = this->green;
+	blue = this->blue;
 }
 
 
-void MyFigure::getFillColor(int* red, int* green, int* blue) const {
-	*red = this->redFill;
-	*green = this->greenFill;
-	*blue = this->blueFill;
+void MyFigure::getFillColor(int &red, int &green, int &blue) const {
+	red = this->redFill;
+	green = this->greenFill;
+	blue = this->blueFill;
 }
