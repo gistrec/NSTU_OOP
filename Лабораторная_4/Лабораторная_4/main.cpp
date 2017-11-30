@@ -8,7 +8,7 @@
 #define _CRT_SECURE_NO_WARNINGS = false;
 
 
-void main() {
+void main() { 
 	setlocale(LC_ALL, "Russian");
 	HWND hwnd = GetConsoleWindow(); // Получаем идентификатор окна
 	HDC hdc = GetDC(hwnd);  // Получаем контекст отображения
