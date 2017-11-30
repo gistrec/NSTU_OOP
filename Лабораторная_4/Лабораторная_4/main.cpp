@@ -24,18 +24,12 @@ void main() {
 		std::shared_ptr<MyCircle> figure2 = std::make_shared<MyCircle>(150, 230, 40);
 		container->addFigure(figure2, 1);
 
-		//list->getElementById(0)->figure->drowPainted(hdc, &rt);
-		//list->getElementById(1)->figure->drowUnpainted(hdc, &rt);
+		container->getFigure(0)->drowPainted(hdc, &rt);
+		container->getFigure(1)->drowUnpainted(hdc, &rt);
 
 		for (auto iter = container->begin(); iter != container->end(); ++iter) {
 			std::cout << (*iter).getRadius() << ", ";
 		}
-
-		//std::sort(list->begin(), list->end(), [](MyCircle a, MyCircle b) { return a.getRadius() < b.getRadius(); });
-
-		//for (auto iter = list->begin(); iter != list->end(); ++iter) {
-		//	std::cout << (*iter).getRadius() << ",";
-		//}
 	} catch (std::string &error) {
 		std::cout << error << std::endl;
 	}

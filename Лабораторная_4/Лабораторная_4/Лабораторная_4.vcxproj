@@ -113,10 +113,12 @@
     <ClCompile Include="Container.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MyCircle.cpp" />
+    <ClCompile Include="MyFigure.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Container.h" />
     <ClInclude Include="MyCircle.h" />
+    <ClInclude Include="MyFigure.h" />
     <ClInclude Include="OwnIterator.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

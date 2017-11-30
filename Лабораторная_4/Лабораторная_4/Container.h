@@ -21,18 +21,14 @@ private:
 	using const_iterator = OwnIterator<const MyCircle, Element>;
 
 	// Двунаправленный список указатель на начало и конец
-	std::shared_ptr<Element> start;
-	std::shared_ptr<Element> tail;
+	std::shared_ptr<Element> start = nullptr;
+	std::shared_ptr<Element> tail = nullptr;
 
 	// Получаем указатель на первый или последний элемент
 	std::shared_ptr<Element> getFirstElement() const;
 	std::shared_ptr<Element> getLastElement() const;
 
 public:
-	// Конструктор класса
-	Container();
-
-
 	iterator begin();
 	iterator end();
 

@@ -1,11 +1,6 @@
 ﻿#pragma once
 #include "Container.h"
 
-Container::Container() {
-	//begin = nullptr;
-	//end = nullptr;
-}
-
 Container::iterator Container::begin() {
 	return iterator(start);
 }
@@ -71,15 +66,6 @@ void Container::deleteFigure(int id) {
 	*(currentElement->previous->next) = *(currentElement->next);
 	*(currentElement->next->previous) = *(currentElement->previous);
 }
-
-
-/*void Container::printAllId() const {
-	std::shared_ptr<Element> currentElement = getFirstElement();
-	while (currentElement != nullptr) {
-		std::cout << currentElement->id << " ";
-		currentElement = currentElement->next;
-	}
-}*/
 
 
 void Container::load(const std::string &fileName) {

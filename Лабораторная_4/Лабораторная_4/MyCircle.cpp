@@ -11,21 +11,36 @@ void MyCircle::load(const std::string &fileName) {
 	std::ifstream input(fileName);
 	if (!input.is_open()) throw std::string("Файл не найден");
 	input >> centerX >> centerY >> radius;
-	input >> r >> g >> b;
-	input >> rFill >> gFill >> bFill;
+
+	int red, green, blue;
+	// Получаем цвет контура фигуры
+	input >> red >> green >> blue;
+	setColor(red, green, blue);
+	// Получаем цвет заливки фигуры
+	input >> red >> green >> blue;
+	setColor(red, green, blue);
 }
 
+// Сохраняем в три строки
 void MyCircle::save(const std::string &fileName) const {
 	std::ofstream output(fileName);
-	// Сохраняем в три строки
 	output << getCenterX() << " " << getCenterY() << " " << getRadius() << "\n";
-	output << r << " " << b << " " << b << "\n";
-	output << rFill << " " << gFill << " " << bFill;
+
+	int red, green, blue;
+	// Получаем цвет контура фигуры
+	getColor(&red, &green, &blue);
+	output << red << " " << green << " " << blue << "\n";
+	// Получаем цвет заливки фигуры
+	getFillColor(&red, &green, &blue);
+	output << red << " " << green << " " << blue;
 }
 
 void MyCircle::drowUnpainted(HDC hdc, const RECT* rt) const {
 	if (!isValid(rt)) throw std::string("Фигура лежит вне границ экрана");
-	HPEN pen = SelectPen(hdc, CreatePen(PS_SOLID, 1, RGB(r, g, b)));
+	int red, green, blue;
+	// Получаем цвет контура фигуры
+	getColor(&red, &green, &blue);
+	HPEN pen = SelectPen(hdc, CreatePen(PS_SOLID, 1, RGB(red, green, blue)));
 	HBRUSH brush = SelectBrush(hdc, CreateSolidBrush(RGB(0, 0, 0))); // Фон
 	Ellipse(hdc, centerX - radius, centerY - radius, centerX + radius, centerY + radius);
 	DeletePen(pen);
@@ -35,8 +50,12 @@ void MyCircle::drowUnpainted(HDC hdc, const RECT* rt) const {
 void MyCircle::drowPainted(HDC hdc, const RECT* rt) const {
 	if (!isValid(rt)) throw std::string("Фигура лежит вне границ экрана");
 	// Создаем перо и говорим, что будем рисовать этим пером
-	HPEN pen = SelectPen(hdc, CreatePen(PS_SOLID, 1, RGB(r, g, b)));
-	HBRUSH brush = SelectBrush(hdc, CreateSolidBrush(RGB(rFill, gFill, bFill))); // Фон
+	int red, green, blue;
+	// Получаем цвет контура фигуры
+	getColor(&red, &green, &blue);
+	HPEN pen = SelectPen(hdc, CreatePen(PS_SOLID, 1, RGB(red, green, blue)));
+	getFillColor(&red, &green, &blue);
+	HBRUSH brush = SelectBrush(hdc, CreateSolidBrush(RGB(red, green, blue))); // Фон
 	Ellipse(hdc, centerX - radius, centerY - radius, centerX + radius, centerY + radius);
 	// удаляем красное перо
 	DeletePen(pen);
@@ -44,7 +63,7 @@ void MyCircle::drowPainted(HDC hdc, const RECT* rt) const {
 	DeleteBrush(brush);
 }
 
-int MyCircle::isValid(const RECT* rt) const {
+bool MyCircle::isValid(const RECT* rt) const {
 	if (centerX - radius < 0 || centerY - radius < 0 ||
 		centerX + radius > rt->right || centerY + radius > rt->bottom) {
 		return false;
@@ -63,12 +82,6 @@ int MyCircle::getCenterY() const {
 void MyCircle::setCenter(int x, int y) {
 	this->centerX = x;
 	this->centerY = y;
-}
-
-void MyCircle::setColor(int r, int g, int b) {
-	this->r = r;
-	this->g = g;
-	this->b = b;
 }
 
 int MyCircle::getRadius() const {
