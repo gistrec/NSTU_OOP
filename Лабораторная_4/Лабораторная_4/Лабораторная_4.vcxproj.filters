@@ -18,34 +18,27 @@
     <ClCompile Include="main.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
-    <ClCompile Include="Container.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="MyCircle.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="MyFigure.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="MyRectangle.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="OwnIterator.h">
+    <ClInclude Include="UnpaintedFigure.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
-    <ClInclude Include="Container.h">
+    <ClInclude Include="Figure.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
-    <ClInclude Include="MyCircle.h">
+    <ClInclude Include="Painted.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
-    <ClInclude Include="MyFigure.h">
+    <ClInclude Include="PaintedFigure.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
-    <ClInclude Include="MyRectangle.h">
+    <ClInclude Include="TwoFigure.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="save">
+      <Filter>Файлы ресурсов</Filter>
+    </None>
   </ItemGroup>
 </Project>

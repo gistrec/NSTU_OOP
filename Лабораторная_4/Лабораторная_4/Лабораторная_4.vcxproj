@@ -114,18 +114,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Container.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="MyCircle.cpp" />
-    <ClCompile Include="MyFigure.cpp" />
-    <ClCompile Include="MyRectangle.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Container.h" />
-    <ClInclude Include="MyCircle.h" />
-    <ClInclude Include="MyFigure.h" />
-    <ClInclude Include="MyRectangle.h" />
-    <ClInclude Include="OwnIterator.h" />
+    <ClInclude Include="PaintedFigure.h" />
+    <ClInclude Include="Figure.h" />
+    <ClInclude Include="Painted.h" />
+    <ClInclude Include="TwoFigure.h" />
+    <ClInclude Include="UnpaintedFigure.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="save" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

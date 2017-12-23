@@ -1,9 +1,8 @@
-﻿#include "MyCircle.h"
-#include "MyRectangle.h"
-#include "Container.h"
-#include <iostream>
+﻿#include <iostream>
 
-#define _CRT_SECURE_NO_WARNINGS = false;
+#include "PaintedFigure.h"
+#include "UnpaintedFigure.h"
+#include "TwoFigure.h"
 
 
 void main() {
@@ -14,29 +13,18 @@ void main() {
 	GetClientRect(hwnd, &rt); // Получаем размер окна
 
 	try {
-		std::shared_ptr<Container> container = std::make_shared<Container>();
+		
+		PaintedFigure* figure1 = new PaintedFigure(130, 200, 40);
+		figure1->setFillColor(255, 255, 255);
 
-		std::shared_ptr<MyCircle> figure1 = std::make_shared<MyCircle>(130, 200, 100);
-		container->addFigure(figure1, 0);
+		system("color F0");
+		figure1->draw(hdc, &rt);
+		//TwoFigure* twoFigure = new TwoFigure(figure1, 150, 230, 100);
+		//twoFigure->draw(hdc, &rt);
 
-		std::shared_ptr<MyCircle> figure2 = std::make_shared<MyCircle>(150, 230, 40);
-		container->addFigure(figure2, 1);
-
-		std::shared_ptr<MyRectangle> figure3 = std::make_shared<MyRectangle>(50, 50, 300, 300);
-		figure3->drowPainted(hdc, &rt);
-
-		container->getFigure(0)->drowPainted(hdc, &rt);
-		container->getFigure(1)->drowUnpainted(hdc, &rt);
-
-		//container->getFigure(1)->save("asdasd.txt");
-
-		for (auto iter = container->begin(); iter != container->end(); ++iter) {
-			std::cout << (*iter).getRadius() << ", ";
-		}
 	} catch (std::string &error) {
-		std::cout << error << std::endl;
+		std::cout << error.c_str() << std::endl;
 	}
-
 
 	std::cout << "\n";
 	system("pause");
